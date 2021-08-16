@@ -1,39 +1,30 @@
-import pytest
-import yaml
-import calculator
-
-cal = calculator.calculator()
+import allure
 
 
 # 计算器功能正向验证
+@allure.feature("计算器功能正向测试")
 class TestCalRight:
-    @pytest.mark.right
-    @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_add(self, x, y, fixtureStart):
-        assert cal.add(x, y)
+    @allure.story("加法")
+    def test_add(self, get_data, fixtureStart):
+        assert fixtureStart.add(get_data[0], get_data[1])
 
-    @pytest.mark.right
-    @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_sub(self, x, y, fixtureStart):
-        assert cal.sub(x, y)
+    @allure.story("减法")
+    def test_sub(self, get_data, fixtureStart):
+        assert fixtureStart.sub(get_data[0], get_data[1])
 
-    @pytest.mark.right
-    @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_multiply(self, x, y, fixtureStart):
-        if cal.multiply(x, y):
-            assert cal.multiply(x, y)
+    @allure.story("乘法")
+    def test_multiply(self, get_data, fixtureStart):
+        if fixtureStart.multiply(get_data[0], get_data[1]):
+            assert fixtureStart.multiply(get_data[0], get_data[1])
 
-    @pytest.mark.right
-    @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_division(self, x, y, fixtureStart):
+    @allure.story("除法")
+    def test_division(self, get_data, fixtureStart):
         try:
-            if cal.division(x, y):
-                assert cal.division(x, y)
+            if fixtureStart.division(get_data[0], get_data[1]):
+                assert fixtureStart.division(get_data[0], get_data[1])
         except:
             print('除数为0，无法计算')
 
-        # with pytest.raises(ZeroDivisionError):
-        #     cal.division(x, y)
 
 # 计算器功能逆向验证
 # class TestCalWrong:
