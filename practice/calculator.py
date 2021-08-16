@@ -1,16 +1,20 @@
 class calculator:
-    def add(self, x, y):
+    @staticmethod
+    def add(x, y):
         print(f'{x} + {y} = {x+y}')
         return x + y
 
-    def sub(self, x, y):
+    @staticmethod
+    def sub(x, y):
         print(f'{x} - {y} = {x-y}')
         return x - y
 
-    def multiply(self, x, y):
+    @staticmethod
+    def multiply(x, y):
         print(f'{x} * {y} = {x*y}')
         return x * y
 
-    def division(self, x, y):
+    @staticmethod
+    def division(x, y):
         print(f'{x} / {y} = {x/y}')
         return x / y

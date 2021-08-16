@@ -7,37 +7,33 @@ cal = calculator.calculator()
 
 # 计算器功能正向验证
 class TestCalRight:
-    def setup_class(self):
-        print('开始正向计算')
-
-    def teardown_class(self):
-        print('正向计算结束')
-
     @pytest.mark.right
     @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_add(self, x, y):
+    def test_add(self, x, y, fixtureStart):
         assert cal.add(x, y)
 
     @pytest.mark.right
     @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_sub(self, x, y):
+    def test_sub(self, x, y, fixtureStart):
         assert cal.sub(x, y)
 
     @pytest.mark.right
     @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_multiply(self, x, y):
+    def test_multiply(self, x, y, fixtureStart):
         if cal.multiply(x, y):
             assert cal.multiply(x, y)
 
     @pytest.mark.right
     @pytest.mark.parametrize('x, y', yaml.safe_load(open('../testData/testData1.yml')))
-    def test_division(self, x, y):
+    def test_division(self, x, y, fixtureStart):
         try:
             if cal.division(x, y):
                 assert cal.division(x, y)
         except:
-            print('除数为0，逻辑正确')
+            print('除数为0，无法计算')
 
+        # with pytest.raises(ZeroDivisionError):
+        #     cal.division(x, y)
 
 # 计算器功能逆向验证
 # class TestCalWrong:
